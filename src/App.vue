@@ -3,20 +3,20 @@
     id="app"
     class="app"
   >
-    <country-choice @get-сountry="getCountry" />
-    <company-choice :companies="company[currentCountry]" />
+    <autocomplit
+      :countries="Object.keys(company)"
+      :companies="company"
+    />
   </div>
 </template>
 
 <script>
-import CountryChoice from '@/components/CountryChoice.vue';
-import CompanyChoice from '@/components/CompanyChoice.vue';
+import Autocomplit from './components/Autocomplit.vue';
 
 export default {
   name: 'App',
   components: {
-    CountryChoice,
-    CompanyChoice,
+    Autocomplit,
   },
   data() {
     return {
@@ -110,7 +110,6 @@ export default {
           },
         ],
       },
-      currentCountry: 'ru',
     };
   },
   methods: {

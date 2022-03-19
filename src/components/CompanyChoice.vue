@@ -49,6 +49,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    filter: {
+      type: Function,
+      default() {},
+    },
   },
   data() {
     return {
@@ -58,10 +62,7 @@ export default {
   },
   computed: {
     filteredCompanies() {
-      return this.companies.filter((company) => {
-        const companyInfo = company.name.toLowerCase() + company.contactPhone + company.inn;
-        return companyInfo.toLowerCase().match(this.search.toLowerCase());
-      });
+      return this.filter(this.companies);
     },
   },
   methods: {

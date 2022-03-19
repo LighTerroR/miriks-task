@@ -1,4 +1,3 @@
-/* eslint-disable vuejs-accessibility/click-events-have-key-events */
 <template>
   <div class="country-select">
     <div
@@ -17,46 +16,15 @@
       :class="{'_active': submenu}"
     >
       <div
+        v-for="massCountry, index in countries"
+        :key="index"
         class="country-select__country-wrapper"
-        @click="changeCountry('ru')"
+        @click="changeCountry(massCountry)"
       >
         <img
-          src="@/assets/img/ru.png"
-          alt="Russia"
-          title="Russia"
-          class="country-select__country"
-        >
-      </div>
-      <div
-        class="country-select__country-wrapper"
-        @click="changeCountry('uk')"
-      >
-        <img
-          src="@/assets/img/uk.png"
-          alt="Great Britain"
-          title="Great Britain"
-          class="country-select__country"
-        >
-      </div>
-      <div
-        class="country-select__country-wrapper"
-        @click="changeCountry('usa')"
-      >
-        <img
-          src="@/assets/img/usa.png"
-          alt=""
-          title="United States of America"
-          class="country-select__country"
-        >
-      </div>
-      <div
-        class="country-select__country-wrapper"
-        @click="changeCountry('ua')"
-      >
-        <img
-          src="@/assets/img/ua.png"
-          alt="Ukraine"
-          title="Ukraine"
+          :src="require(`@/assets/img/${massCountry}.png`)"
+          :alt="massCountry"
+          :title="massCountry"
           class="country-select__country"
         >
       </div>
@@ -67,6 +35,12 @@
 <script>
 export default {
   name: 'CountryChoice',
+  props: {
+    countries: {
+      type: Array,
+      default: () => [],
+    },
+  },
   emits: ['get-сountry'],
   data() {
     return {
