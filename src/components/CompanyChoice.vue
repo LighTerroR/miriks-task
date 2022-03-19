@@ -6,7 +6,6 @@
       type="text"
       placeholder="Type company info"
       @focus="open = true"
-      @blur="close"
     >
     <div
       class="company-input__companies"
@@ -22,7 +21,7 @@
           v-for="company, index in filteredCompanies"
           :key="index"
           class="company-input__company"
-          @click="search = company.name"
+          @click="setSearch(company.name)"
         >
           <p class="company-input__name">
             {{ company.name }}
@@ -66,10 +65,9 @@ export default {
     },
   },
   methods: {
-    close() {
-      setTimeout(() => {
-        this.open = false;
-      }, 100);
+    setSearch(companyName) {
+      this.search = companyName;
+      this.open = false;
     },
   },
 };
